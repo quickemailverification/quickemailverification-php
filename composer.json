@@ -1,0 +1,27 @@
+{
+	"name": "quickemailverification/quickemailverification",
+	"version": "0.1.0",
+	"description": "Official QuickEmailVerification API library client for PHP",
+	"homepage": "http://quickemailverification.com",
+	"authors": [
+		{
+			"name": "quickemailverification",
+			"email": "",
+			"homepage": "http://quickemailverification.com"
+		}
+	],
+	"keywords": ["quickemailverification", "email verification api", "client", "library"],
+	"autoload": {
+		"psr-0": {
+			"QuickEmailVerification\\": "lib/"
+		}
+	},
+	"require": {
+		"ext-json": "*",
+		"guzzle/guzzle": "3.7.*"
+	},
+	"support": {
+		"issues": "https://github.com/quickemailverification/quickemailverification-php/issues"
+	},
+	"license": "MIT"
+}
