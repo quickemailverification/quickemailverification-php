@@ -10,7 +10,7 @@
 			"homepage": "http://quickemailverification.com"
 		}
 	],
-	"keywords": ["quickemailverification", "email verification api", "client", "library"],
+	"keywords": ["quickemailverification", "email verification api", "client", "library", "free", "email", "verify", "validation", "verification","api"],
 	"autoload": {
 		"psr-0": {
 			"QuickEmailVerification\\": "lib/"
