@@ -72,7 +72,7 @@ A successful API call responds with the following values:
   - `accepted_email` - SMTP server accepted email address
   - `no_connect` - SMTP server connection failure
   - `timeout` -  Session time out occured at SMTP server
-  - `unavailable_smtp` - SMTP server could not available to process request
+  - `unavailable_smtp` - SMTP server is not available to process request
   - `unexpected_error` - An unexpected error has occurred
   - `no_mx_record` - Could not get MX records for domain
   - `temporarily_blocked` - Email is temporarily graylisted 
