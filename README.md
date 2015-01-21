@@ -4,7 +4,7 @@
 </p>
 
 
-# Official QuickEmailVerification API library client for PHP
+# Official Email Validation API library client for PHP
 
 QuickEmailVerification provides the quickest way to avoid fake / invalid emails.
 
