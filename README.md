@@ -87,6 +87,12 @@ A successful API call responds with the following values:
 - **disposable**  `true | false` - *true* if the email address uses a *disposable* domain.
 - **accept_all**  `true | false` - *true* if the domain appears to accept all emails delivered to that domain
 
+### HTTP Response headers
+
+Total remaining credits can be found by http response header. It contains overall remaining credits, including Persistent & Per day credits.
+
+- **X-QEV-Remaining-Credits** - Your remaining email verification credits (i.e. Per Day credits + Persistent Credits).
+
 ## HTTP status codes for QuickEmailVerification API calls
 
 QuickEmailVerification API also returns following HTTP status codes to indicate success or failure of request.
