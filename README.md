@@ -102,6 +102,7 @@ QuickEmailVerification API also returns following HTTP status codes to indicate 
 - `401` - Server can not verify your authentication to use api. Please check whether API key is proper or not.
 - `402` - You are running out of your credit limit.
 - `404` - Requested API can not be found on server.
+- `429` - Too many requests. Rate limit exceeded.
 
 ## License
 MIT
