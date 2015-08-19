@@ -30,7 +30,7 @@ Add the following to your composer.json
 ```js
 {
     "require": {
-        "quickemailverification/quickemailverification": "dev-master"
+        "quickemailverification/quickemailverification": "*"
     }
 }
 ```
