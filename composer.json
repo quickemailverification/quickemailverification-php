@@ -1,12 +1,12 @@
 {
 	"name": "quickemailverification/quickemailverification",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"description": "Official QuickEmailVerification API library client for PHP",
 	"homepage": "http://quickemailverification.com",
 	"authors": [
 		{
 			"name": "quickemailverification",
-			"email": "quickemailverify@gmail.com",
+			"email": "support@quickemailverification.com",
 			"homepage": "http://quickemailverification.com"
 		}
 	],
@@ -18,7 +18,7 @@
 	},
 	"require": {
 		"ext-json": "*",
-		"guzzle/guzzle": "3.8.*"
+		"guzzlehttp/guzzle": "6.*"
 	},
 	"support": {
 		"issues": "https://github.com/quickemailverification/quickemailverification-php/issues"
