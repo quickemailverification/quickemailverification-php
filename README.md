@@ -75,7 +75,7 @@ A successful API call responds with the following values:
   - `unavailable_smtp` - SMTP server is not available to process request
   - `unexpected_error` - An unexpected error has occurred
   - `no_mx_record` - Could not get MX records for domain
-  - `temporarily_blocked` - Email is temporarily graylisted 
+  - `temporarily_blocked` - Email is temporarily greylisted 
   - `exceeded_storage` - SMTP server rejected email. Exceeded storage allocation
 
 - **role**  `true | false` - *true* if the email address is a *role* address (`manager@example.com`, `ceo@example.com`, etc)
