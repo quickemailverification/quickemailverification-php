@@ -65,13 +65,13 @@ $response = $quickemailverification->verify("test@example.com");
 A successful API call responds with the following values:
 
 - **result** `string` - The verified results will be: `valid`, `invalid`, `unknown`
-- **reason** `string` - Reason definations are as below:
+- **reason** `string` - Reason definitions are as below:
   - `invalid_email` - Specified email has invalid email address syntax
   - `invalid_domain` - Domain name does not exist
   - `rejected_email` - SMTP server rejected email. Email does not exist
   - `accepted_email` - SMTP server accepted email address
   - `no_connect` - SMTP server connection failure
-  - `timeout` -  Session time out occured at SMTP server
+  - `timeout` -  Session time out occurred at SMTP server
   - `unavailable_smtp` - SMTP server is not available to process request
   - `unexpected_error` - An unexpected error has occurred
   - `no_mx_record` - Could not get MX records for domain
