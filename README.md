@@ -78,7 +78,7 @@ A successful API call responds with the following values:
   - `temporarily_blocked` - Email is temporarily greylisted 
   - `exceeded_storage` - SMTP server rejected email. Exceeded storage allocation
 
-- **disposable**  `true | false` - *true* if the email address uses a *disposable* domain.
+- **disposable**  `true | false` - *true* if the email address uses a *disposable* domain
 - **accept_all**  `true | false` - *true* if the domain appears to accept all emails delivered to that domain
 - **role**  `true | false` - *true* if the email address is a *role* address (`manager@example.com`, `ceo@example.com`, etc)
 - **email** `string` - Returns a normalized version. (`Niki@example.com` -> `niki@example.com`
