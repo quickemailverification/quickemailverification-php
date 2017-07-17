@@ -85,6 +85,7 @@ A successful API call responds with the following values:
 - **user** `string` - The local part of an email address. (`niki@example.com` -> `niki`)
 - **domain** `string` - The domain of the provided email address. (`niki@example.com` -> `example.com`)
 - **safe_to_send** `true | false` - *true* if the email address is safe for deliverability
+- **did_you_mean** `string` - Returns email suggestions if specific typo errors found in email
 - **success** `true | false` - *true* if the API request was successful
 - **message** `string` - Describes API call failure reason
 
