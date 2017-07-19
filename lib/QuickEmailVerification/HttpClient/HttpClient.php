@@ -2,153 +2,137 @@
 
 namespace QuickEmailVerification\HttpClient;
 
-use Guzzle\Http\Client as GuzzleClient;
-use Guzzle\Http\ClientInterface;
-use Guzzle\Http\Message\RequestInterface;
-
-use QuickEmailVerification\HttpClient\AuthHandler;
-use QuickEmailVerification\HttpClient\ErrorHandler;
-use QuickEmailVerification\HttpClient\RequestHandler;
-use QuickEmailVerification\HttpClient\Response;
-use QuickEmailVerification\HttpClient\ResponseHandler;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\BadResponseException;
 
 /**
  * Main HttpClient which is used by Api classes
+ * @package QuickEmailVerification\HttpClient
  */
-class HttpClient
+class HttpClient implements HttpClientInterface
 {
-    protected $options = array(
-        'base'    => 'http://api.quickemailverification.com',
+    /**
+     * @var Client
+     */
+    private $client;
+
+    /**
+     * @var array
+     */
+    private static $options = [
+        'base_uri'=>'http://api.quickemailverification.com',
         'api_version' => 'v1',
-        'user_agent' => 'alpaca/0.2.1 (https://github.com/pksunkara/alpaca)'
-    );
+        'headers' => [
+            'user-agent' => 'quickemailverification-php/v1.0.1 (https://github.com/quickemailverification/quickemailverification-php)'
+        ]
+    ];
 
-    protected $headers = array();
-
-    public function __construct($auth = array(), array $options = array())
+    /**
+     * @param string $auth
+     * @param array $options
+     */
+    public function __construct($auth = '', array $options = [])
     {
+        $options = array_merge(self::$options, $options);
 
-        if (gettype($auth) == 'string') {
-            $auth = array('http_header' => $auth);
-        }
-
-        $this->options = array_merge($this->options, $options);
-
-        $this->headers = array(
-            'user-agent' => $this->options['user_agent'],
-        );
-
-        if (isset($this->options['headers'])) {
-            $this->headers = array_merge($this->headers, array_change_key_case($this->options['headers']));
-            unset($this->options['headers']);
-        }
-
-        $client = new GuzzleClient($this->options['base'], $this->options);
-        $this->client = $client;
-
-        $listener = array(new ErrorHandler(), 'onRequestError');
-        $this->client->getEventDispatcher()->addListener('request.error', $listener);
-
-        if (!empty($auth)) {
-            $listener = array(new AuthHandler($auth), 'onRequestBeforeSend');
-            $this->client->getEventDispatcher()->addListener('request.before_send', $listener);
-        }
+        $options['headers']['Authorization'] = sprintf('token %s', $auth);
+        $this->client = new Client($options);
     }
 
-    public function get($path, array $params = array(), array $options = array())
+    /**
+     * @param $path
+     * @param array $body
+     * @param array $options
+     * @return Response
+     * @throws \ErrorException|\RuntimeException
+     */
+    public function get($path, array $params = [], array $options = [])
     {
-        return $this->request($path, null, 'GET', array_merge($options, array('query' => $params)));
+        return $this->request($path, [], 'GET', array_merge($options, ['query' => $params]));
     }
 
-    public function post($path, $body, array $options = array())
+    /**
+     * @param $path
+     * @param array $body
+     * @param array $options
+     * @return Response
+     * @throws \ErrorException|\RuntimeException
+     */
+    public function post($path, $body, array $options = [])
     {
         return $this->request($path, $body, 'POST', $options);
     }
 
-    public function patch($path, $body, array $options = array())
+    /**
+     * @param $path
+     * @param array $body
+     * @param array $options
+     * @return Response
+     * @throws \ErrorException|\RuntimeException
+     */
+    public function patch($path, $body, array $options = [])
     {
         return $this->request($path, $body, 'PATCH', $options);
     }
 
-    public function delete($path, $body, array $options = array())
+    /**
+     * @param $path
+     * @param array $body
+     * @param array $options
+     * @return Response
+     * @throws \ErrorException|\RuntimeException
+     */
+    public function delete($path, $body, array $options = [])
     {
         return $this->request($path, $body, 'DELETE', $options);
     }
 
-    public function put($path, $body, array $options = array())
+    /**
+     * @param $path
+     * @param array $body
+     * @param array $options
+     * @return Response
+     * @throws \ErrorException|\RuntimeException
+     */
+    public function put($path, $body, array $options = [])
     {
         return $this->request($path, $body, 'PUT', $options);
     }
 
     /**
-     * Intermediate function which does three main things
-     *
-     * - Transforms the body of request into correct format
-     * - Creates the requests with give parameters
-     * - Returns response body after parsing it into correct format
+     * @param $path
+     * @param array $body
+     * @param string $httpMethod
+     * @param array $options
+     * @return Response
+     * @throws \ErrorException|\RuntimeException
      */
-    public function request($path, $body = null, $httpMethod = 'GET', array $options = array())
+    private function request($path, array $body = [], $httpMethod = 'GET', array $options = [])
     {
-        $headers = array();
+        if (isset($options['body'])) {
+            $body = array_merge($options['body'], $body);
+        }
 
-        $options = array_merge($this->options, $options);
-
+        $headers = [];
         if (isset($options['headers'])) {
             $headers = $options['headers'];
             unset($options['headers']);
         }
 
-        $headers = array_merge($this->headers, array_change_key_case($headers));
-
-        unset($options['body']);
-
-        unset($options['base']);
-        unset($options['user_agent']);
-
-        $request = $this->createRequest($httpMethod, $path, null, $headers, $options);
-
-        if ($httpMethod != 'GET') {
-            $request = $this->setBody($request, $body, $options);
-        }
+        $options['body'] = json_encode($body);
+        $options['headers'] = array_merge($headers, self::$options['headers']);
+        $options = array_merge($options, self::$options);
 
         try {
-            $response = $this->client->send($request);
+            $response = $this->client->request($httpMethod, $path, $options);
+        } catch (BadResponseException $e) {
+            throw new \ErrorException($e->getMessage(), $e->getResponse()->getStatusCode());
         } catch (\LogicException $e) {
-            throw new \ErrorException($e->getMessage());
+            throw new \ErrorException($e->getMessage(), $e->getCode());
         } catch (\RuntimeException $e) {
-            throw new \RuntimeException($e->getMessage());
+            throw new \ErrorException($e->getMessage(), $e->getCode());
         }
 
-        return new Response($this->getBody($response), $response->getStatusCode(), $response->getHeaders());
-    }
-
-    /**
-     * Creating a request with the given arguments
-     *
-     * If api_version is set, appends it immediately after host
-     */
-    public function createRequest($httpMethod, $path, $body = null, array $headers = array(), array $options = array())
-    {
-        $version = (isset($options['api_version']) ? "/".$options['api_version'] : "");
-
-        $path    = $version.$path;
-
-        return $this->client->createRequest($httpMethod, $path, $headers, $body, $options);
-    }
-
-    /**
-     * Get response body in correct format
-     */
-    public function getBody($response)
-    {
-        return ResponseHandler::getBody($response);
-    }
-
-    /**
-     * Set request body in correct format
-     */
-    public function setBody(RequestInterface $request, $body, $options)
-    {
-        return RequestHandler::setBody($request, $body, $options);
+        return new Response(json_decode($response->getBody()->getContents(), true), $response->getStatusCode(), $response->getHeaders());
     }
 }

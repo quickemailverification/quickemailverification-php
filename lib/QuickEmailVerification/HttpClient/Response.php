@@ -7,7 +7,28 @@ namespace QuickEmailVerification\HttpClient;
  */
 class Response
 {
-    function __construct($body, $code, $headers) {
+    /**
+     * @var array
+     */
+    public $body;
+
+    /**
+     * @var int
+     */
+    public $code;
+
+    /**
+     * @var array|null
+     */
+    public $headers;
+
+    /**
+     * @param array|string|\GuzzleHttp\EntityBodyInterface $body
+     * @param int $code
+     * @param array|null
+     */
+    public function __construct($body, $code, $headers = null)
+    {
         $this->body = $body;
         $this->code = $code;
         $this->headers = $headers;

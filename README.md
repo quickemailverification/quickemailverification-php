@@ -57,7 +57,13 @@ require_once 'vendor/autoload.php';
 
 $client   = new QuickEmailVerification\Client('Your_API_Key_Here');
 $quickemailverification  = $client->quickemailverification();
-$response = $quickemailverification->verify("test@example.com");
+
+try {
+  $response = $quickemailverification->verify("test@example.com");
+}
+catch (Exception $e) {
+  echo "Code: " . $e->getCode() . " Message: " . $e->getMessage();
+}
 ```
 
 ### Response information

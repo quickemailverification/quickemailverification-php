@@ -2,17 +2,19 @@
 
 namespace QuickEmailVerification\Api;
 
-use QuickEmailVerification\HttpClient\HttpClient;
+use QuickEmailVerification\HttpClient\HttpClientInterface;
 
-/**
- * QuickEmailVerification Class for email verification
- */
-class Quickemailverification
+class Quickemailverification implements QuickEmailVerificationInterface
 {
-
+    /**
+     * @var HttpClientInterface
+     */
     private $client;
 
-    public function __construct(HttpClient $client)
+    /**
+     * @param HttpClientInterface $client
+     */
+    public function __construct(HttpClientInterface $client)
     {
         $this->client = $client;
     }
@@ -20,17 +22,15 @@ class Quickemailverification
     /**
      * Verify email address and get detailed response
      *
-     * '/verify?email=:email' GET
+     * '/v1/verify?email=:email' GET
      *
      * @param $email send email address in query parameter
      */
-    public function verify($email, array $options = array())
+    public function verify($email, array $options = [])
     {
-        $body = (isset($options['query']) ? $options['query'] : array());
+        $body = isset($options['query']) ? $options['query'] : [];
+        $body['email'] = $email;
 
-        $response = $this->client->get('/verify?email='.rawurlencode($email).'', $body, $options);
-
-        return $response;
+        return $this->client->get('/v1/verify', $body, $options);
     }
-
 }
