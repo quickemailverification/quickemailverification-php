@@ -85,8 +85,9 @@ A successful API call responds with the following values:
   - `exceeded_storage` - SMTP server rejected email. Exceeded storage allocation
 
 - **disposable**  `true | false` - *true* if the email address uses a *disposable* domain
-- **accept_all**  `true | false` - *true* if the domain appears to accept all emails delivered to that domain
+- **accept_all**  `true | false` - *true* if the domain appears to *accept all* emails delivered to that domain
 - **role**  `true | false` - *true* if the email address is a *role* address (`manager@example.com`, `ceo@example.com`, etc)
+- **free** `true | false` - *true* if the email address is from free email provider like Gmail, Yahoo!, Hotmail etc.
 - **email** `string` - Returns a normalized version. (`Niki@example.com` -> `niki@example.com`
 - **user** `string` - The local part of an email address. (`niki@example.com` -> `niki`)
 - **domain** `string` - The domain of the provided email address. (`niki@example.com` -> `example.com`)
