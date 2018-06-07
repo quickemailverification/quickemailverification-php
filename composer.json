@@ -1,6 +1,6 @@
 {
 	"name": "quickemailverification/quickemailverification",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Official QuickEmailVerification API library client for PHP",
 	"homepage": "http://quickemailverification.com",
 	"authors": [
@@ -10,7 +10,7 @@
 			"homepage": "http://quickemailverification.com"
 		}
 	],
-	"keywords": ["quickemailverification", "email verification api", "client", "library", "free", "email", "verify", "validation", "verification","api"],
+	"keywords": ["quickemailverification", "email verification api", "client", "library", "free", "email", "verify", "validation", "verification", "api", "sandbox api"],
 	"autoload": {
 		"psr-0": {
 			"QuickEmailVerification\\": "lib/"
