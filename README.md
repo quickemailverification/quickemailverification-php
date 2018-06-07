@@ -59,7 +59,11 @@ $client   = new QuickEmailVerification\Client('Your_API_Key_Here');
 $quickemailverification  = $client->quickemailverification();
 
 try {
+// PRODUCTION MODE
   $response = $quickemailverification->verify("test@example.com");
+
+// SANDBOX MODE
+// $response = $quickemailverification->sandbox("valid@example.com");
 }
 catch (Exception $e) {
   echo "Code: " . $e->getCode() . " Message: " . $e->getMessage();
@@ -85,9 +89,8 @@ A successful API call responds with the following values:
   - `exceeded_storage` - SMTP server rejected email. Exceeded storage allocation
 
 - **disposable**  `true | false` - *true* if the email address uses a *disposable* domain
-- **accept_all**  `true | false` - *true* if the domain appears to *accept all* emails delivered to that domain
+- **accept_all**  `true | false` - *true* if the domain appears to accept all emails delivered to that domain
 - **role**  `true | false` - *true* if the email address is a *role* address (`manager@example.com`, `ceo@example.com`, etc)
-- **free** `true | false` - *true* if the email address is from free email provider like Gmail, Yahoo!, Hotmail etc.
 - **email** `string` - Returns a normalized version. (`Niki@example.com` -> `niki@example.com`
 - **user** `string` - The local part of an email address. (`niki@example.com` -> `niki`)
 - **domain** `string` - The domain of the provided email address. (`niki@example.com` -> `example.com`)
@@ -112,6 +115,11 @@ QuickEmailVerification API also returns following HTTP status codes to indicate 
 - `402` - You are running out of your credit limit.
 - `404` - Requested API can not be found on server.
 - `429` - Too many requests. Rate limit exceeded.
+
+## Sandbox Mode
+QuickEmailVerification single email verification API sandbox mode helps developers to test their integration against simulated results. Requesting against sandbox endpoint is totally free and no credits will be deducted from actual credit quota.
+
+Please refer our [knowledge base](http://docs.quickemailverification.com/email-verification-api/sandbox-mode) to learn more about sandbox mode.
 
 ## License
 MIT
