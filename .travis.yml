@@ -5,6 +5,8 @@ php:
 - '7.1'
 install:
 - composer install --no-interaction
+script:
+- composer test
 env:
   global:
     secure: RaZZgdsOVkZe5Xa/+b8UQV7SMtvfIZt70erz6+6UD+xjyn+tzYjg+5XaJMpUHZ6jiXBH/YEq9ej7q/yrDXLYZPQlPYEfGj4Kwn8P0Jkl50th/ltle7Li0vaPG320kmlTZxR08bEEdN0W1G+QdMcwQhSyQ7fIoSxqlvh+OIvu8vqcVCwCFWXXnn+FBRpzNfEUqrGsSkvL8fYcwT3RJZRL8an8LvtGymIb6Eo3lKCSZ3V+/k4AwDtfRis95OQr0FG0KiotPrQC+/m7KnahG6wqdGwyH9keDs3RZgmFrieAaoCEWN5DANa9VEQY1piV1STUHXnIGsw0wmlHZRWNqiJ4xJo5fIuwhCr7dIXtulB5VOWcQjVz4Sq8lzlXXNc8hqsq0XsEVruEKGmLeT/WCccomg35cazbO2h4CNxJ9NNCZ/j10zWsnlocRKG7W9xzmBrfVWvgwQZ4nHuGlgKlKGO0r7yTuu/4yJIYcCyLAii/OicNkuSiOvR28nhB72E4Z2LL5cfhdYqoVxbnpeFpadgD6dD7mX43OlhTWREaySFCcAb1YEQqHBhB4owaHAawR+u+LUABmA0RCjIMFfq/yG8HIF0wY2nHOjTFqi2C8kCGdF+e/PlZKXXSquIzn3Q0SDNg4ne8LqL3dwNd8jFnpKzq9bhtwv2wBU4dvIRsAUaSD40=
