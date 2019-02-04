@@ -6,6 +6,10 @@
 
 # Official Email Validation API library client for PHP
 
+[![Travis CI](https://travis-ci.org/quickemailverification/quickemailverification-php.svg?branch=master)](https://travis-ci.org/quickemailverification/quickemailverification-php)
+[![Total Downloads](https://img.shields.io/packagist/dt/quickemailverification/quickemailverification.svg)](https://packagist.org/packages/quickemailverification/quickemailverification)
+[![Packagist Version](https://img.shields.io/packagist/v/quickemailverification/quickemailverification.svg)](https://packagist.org/packages/quickemailverification/quickemailverification)
+
 QuickEmailVerification provides the quickest way to avoid fake / invalid emails.
 
 * Get actual users by scanning email address.
