@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://quickemailverification.com/extra/images/logo_github.png" alt="Quick Email Verification">
+  <img src="https://quickemailverification.com/images/logo_github.png" alt="Quick Email Verification">
   <br>
 </p>
 
