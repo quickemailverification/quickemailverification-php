@@ -17,12 +17,14 @@
 		}
 	},
 	"require": {
+		"php": "^8.0",
 		"ext-json": "*",
-                "guzzlehttp/guzzle": "^6.0"
+
+		"guzzlehttp/guzzle": "^7.3"
 	},
 	"require-dev": {
-        "phpunit/phpunit": "^4.8 || ^5.4",
-        "friendsofphp/php-cs-fixer": "^2.3"
+        "phpunit/phpunit": "^9.5.5",
+        "friendsofphp/php-cs-fixer": "^v2.19"
         },
 	"support": {
 		"issues": "https://github.com/quickemailverification/quickemailverification-php/issues"

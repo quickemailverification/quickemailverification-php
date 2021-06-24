@@ -2,14 +2,16 @@
 
 namespace QuickEmailVerification\Api;
 
+use ErrorException;
 use QuickEmailVerification\HttpClient\HttpClientInterface;
+use QuickEmailVerification\HttpClient\Response;
 
 class Quickemailverification implements QuickEmailVerificationInterface
 {
     /**
      * @var HttpClientInterface
      */
-    private $client;
+    private HttpClientInterface $client;
 
     /**
      * @param HttpClientInterface $client
@@ -24,11 +26,12 @@ class Quickemailverification implements QuickEmailVerificationInterface
      *
      * '/v1/verify?email=:email' GET
      *
-     * @param $email send email address in query parameter
+     * @param string $email send email address in query parameter
+     * @throws ErrorException
      */
-    public function verify($email, array $options = [])
+    public function verify($email, array $options = []): Response
     {
-        $body = isset($options['query']) ? $options['query'] : [];
+        $body = $options['query'] ?? [];
         $body['email'] = $email;
 
         return $this->client->get('/v1/verify', $body, $options);
@@ -39,11 +42,12 @@ class Quickemailverification implements QuickEmailVerificationInterface
      *
      * '/v1/verify/sandbox?email=:email' GET
      *
-     * @param $email send email address in query parameter
+     * @param string $email send email address in query parameter
+     * @throws ErrorException
      */
-    public function sandbox($email, array $options = [])
+    public function sandbox($email, array $options = []): Response
     {
-        $body = isset($options['query']) ? $options['query'] : [];
+        $body = $options['query'] ?? [];
         $body['email'] = $email;
 
         return $this->client->get('/v1/verify/sandbox', $body, $options);

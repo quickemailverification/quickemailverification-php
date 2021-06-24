@@ -1,20 +1,23 @@
 <?php
 
-namespace QuickEmailVerification\Test;
+namespace QuickEmailVerification;
 
-use QuickEmailVerification\Client;
+use ErrorException;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \QuickEmailVerification\Api\Quickemailverification
+ */
 class QevVerifyTest extends TestCase
 {
-    protected $quickemailverification = null;
+    protected ?Api\Quickemailverification $quickemailverification = null;
 
-    public function setup()
+    public function setup(): void
     {
         $api_key = getenv('apikey');
 
         if (!$api_key) {
-            throw new \ErrorException('Invalid Api Key');
+            throw new ErrorException('Invalid Api Key');
         }
 
         $client = new Client($api_key);
@@ -397,13 +400,13 @@ class QevVerifyTest extends TestCase
 
     public function testVerifyLowCredit()
     {
-        $this->expectException(\ErrorException::class);
+        $this->expectException(ErrorException::class);
         $this->expectExceptionCode(402);
         $this->expectExceptionMessage('Low credit. Payment required');
         $this->quickemailverification->sandbox('low-credit@example.com');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->quickemailverification);
     }
