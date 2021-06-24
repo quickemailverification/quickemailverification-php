@@ -1,6 +1,5 @@
 {
 	"name": "quickemailverification/quickemailverification",
-	"version": "1.0.2",
 	"description": "Official QuickEmailVerification API library client for PHP",
 	"homepage": "https://quickemailverification.com",
 	"authors": [
