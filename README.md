@@ -50,7 +50,7 @@ $ php composer.phar update
 
 #### Versions
 
-Works with [ 5.4 / 5.5 ]
+Works with [ 5.4 / 5.5 / 7.2 / 7.4 / 8.0 / 8.1 ]
 
 ## Usage
 
