@@ -20,7 +20,7 @@ class HttpClient implements HttpClientInterface
      * @var array
      */
     private static $options = [
-        'base_uri'=>'http://api.quickemailverification.com',
+        'base_uri'=>'https://api.quickemailverification.com',
         'api_version' => 'v1',
         'headers' => [
             'user-agent' => 'quickemailverification-php/v1.0.3 (https://github.com/quickemailverification/quickemailverification-php)'
