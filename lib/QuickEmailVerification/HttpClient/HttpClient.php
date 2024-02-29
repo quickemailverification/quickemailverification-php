@@ -23,7 +23,7 @@ class HttpClient implements HttpClientInterface
         'base_uri'=>'https://api.quickemailverification.com',
         'api_version' => 'v1',
         'headers' => [
-            'user-agent' => 'quickemailverification-php/v1.0.3 (https://github.com/quickemailverification/quickemailverification-php)'
+            'user-agent' => 'quickemailverification-php/v1.0.4 (https://github.com/quickemailverification/quickemailverification-php)'
         ]
     ];
 
